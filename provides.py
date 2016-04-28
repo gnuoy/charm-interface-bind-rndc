@@ -11,8 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json
-
 from charms.reactive import RelationBase
 from charms.reactive import hook
 from charms.reactive import scopes
@@ -40,6 +38,8 @@ class BindRNDCProvides(RelationBase):
         with open(key_file, 'r') as f:
             content = f.readlines()
         # XXX Naive parsing of keyfile
+        rndckey = None
+        algorithm = None
         for line in content:
             if line and line.split()[0] == 'algorithm':
                 algorithm = line.split()[1]
